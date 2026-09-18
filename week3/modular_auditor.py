@@ -1,13 +1,11 @@
-
-"""Modular inventory auditor for the Week 3 lab."""
-
 MAX_INVENTORY = 500
 TAX_RATE = 0.10
 
 
 def get_valid_input():
-    """Return a valid quantity, ``"quit"``, or ``None`` for rejected input."""
-    stock_input = input("Enter stock quantity: ").strip()
+    stock_input = input(
+        "Enter the stock count (or type 'quit' to quit): "
+    ).strip()
 
     if stock_input.lower() == "quit":
         return "quit"
@@ -15,28 +13,25 @@ def get_valid_input():
     try:
         stock_quantity = int(stock_input)
     except ValueError:
-        print("Invalid input. Please enter a valid stock quantity.")
+        print("Invalid input. Please enter a valid integer.")
         return None
 
     if stock_quantity < 0:
-        print("Invalid input. Stock quantity cannot be negative.")
+        print("Invalid input. Please enter a non-negative integer.")
         return None
 
     return stock_quantity
 
 
 def process_delivery(current_total, new_value):
-    """Return the total after adding a delivery."""
     return current_total + new_value
 
 
 def calculate_tax(amount):
-    """Return 10% tax for one delivery."""
     return amount * TAX_RATE
 
 
 def generate_report(total_units, failed_attempts):
-    """Print the final audit summary."""
     print("\n" + "=" * 42)
     print("              AUDIT SUMMARY")
     print("=" * 42)
@@ -47,7 +42,6 @@ def generate_report(total_units, failed_attempts):
 
 
 def main():
-    """Run the interactive inventory audit."""
     inventory = 0
     failed_attempts = 0
 
